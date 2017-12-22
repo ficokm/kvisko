@@ -18,8 +18,8 @@ export default class Playquiz extends Component {
     }
   }
   _onPressBack(){
-    const {goBack} = this.props.navigation
-      goBack()
+    //const {goBack} = this.props.navigation
+     // goBack()
   }
   _quizFinish(score){    
     this.setState({ quizFinish: true, score : score })
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   toolbar:{
         backgroundColor:'#2196F3',
-        paddingTop:30,
+        paddingTop:40,
         paddingBottom:10,
         flexDirection:'row'
     },

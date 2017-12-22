@@ -10,20 +10,15 @@ export default class ScreenLogin extends React.Component {
   static navigationOptions =
   {
     headerLeft: null,
-     title: 'Квиско',
-     header: null,
+    title: 'Квиско',
+    header: null,
   }
   constructor(props) {
-    
-       super(props)
-    
-       this.state = {
-    
+      super(props)
+         this.state = {
          UserEmail: '',
          UserPassword: ''
-    
-       }
-    
+      }
      }
      UserLoginFunction = () =>{
       
@@ -54,6 +49,8 @@ export default class ScreenLogin extends React.Component {
                 //Then open Profile activity and send user email to profile activity.
                  this.props.navigation.navigate('Second', { Email: UserEmail });
                  Keyboard.dismiss();
+                 this._textInput.setNativeProps({text: ''});
+                 this._textInput1.setNativeProps({text: ''});
               }
              else{
              alert(responseJson);
@@ -66,16 +63,18 @@ export default class ScreenLogin extends React.Component {
            });
       }
      
-      KlikBack = () =>{
+  KlikBack = () =>{
         BackHandler.exitApp();
       }
       
   ProbaReg = () =>{
+    Keyboard.dismiss();
     var {navigate} = this.props.navigation;
     navigate("Registration")
   }
   
   ZabLozinka = () =>{
+    Keyboard.dismiss();
     var {navigate} = this.props.navigation;
     navigate("AjdeViseSkociTamo")
    
@@ -88,38 +87,32 @@ export default class ScreenLogin extends React.Component {
  
   render() {
     var {navigate} = this.props.navigation;
-    
-      return (
-        
-
+    return (
         <KeyboardAvoidingView style={styles.MainContainer} behavior="padding">
-       
         <Text style= {styles.TextComponentStyle}>Пријави се!</Text>
             <TextInput
               // Adding hint in Text Input using Place holder.
               placeholder="E-mail"
-            
               onChangeText={UserEmail => this.setState({UserEmail})}
+              maxLength = {30}
+              ref={component => this._textInput1 = component}
               // Making the Under line Transparent.
                underlineColorAndroid='transparent'
               style={styles.TextInputStyleClass}
               blurOnSubmit={true}
-            
-              
-          />
+              />
    
           <TextInput
             // Adding hint in Text Input using Place holder.
               placeholder="Лозинка "
               onChangeText={UserPassword => this.setState({UserPassword})}
-             
-            // Making the Under line Transparent.
+             // Making the Under line Transparent.
               underlineColorAndroid='transparent'
               style={styles.TextInputStyleClass}
               ref={component => this._textInput = component}
               secureTextEntry={true}
               blurOnSubmit={true}
-              
+              maxLength = {20}
               
           />
           <View>
@@ -136,25 +129,17 @@ export default class ScreenLogin extends React.Component {
                 </Text>
           </TouchableHighlight>
 
-
-          
-          
           <TouchableHighlight
                 style={styles.submit}
                 onPress={this.KlikBack}
                 underlayColor='#fff'>
                 <Text style={styles.submitText}>Назад</Text>
           </TouchableHighlight>
-               
-         
-          </View>
-         
-         
-         
+        </View>
           <View style={styles.tema}>
                 <Text >Нисте регистровани?</Text>
                 <Text style={styles.zablog}  onPress={this.ProbaReg}> Региструјте се!</Text>
-          </View> 
+        </View> 
       </KeyboardAvoidingView>
       
               
@@ -165,14 +150,11 @@ export default class ScreenLogin extends React.Component {
 const styles = StyleSheet.create({
   
  MainContainer :{
-  
  justifyContent: 'center',
  flex:1,
  margin: 30,
  },
-  
  TextInputStyleClass: {
-  
  textAlign: 'center',
  marginBottom: 7,
  height: 40,
@@ -182,10 +164,8 @@ const styles = StyleSheet.create({
   
   // Set border Radius.
   borderRadius: 5 
- 
  },
- 
-  TextComponentStyle: {
+ TextComponentStyle: {
     fontSize: 20,
     color: "#000",
     textAlign: 'center', 
@@ -195,10 +175,7 @@ const styles = StyleSheet.create({
   textRe:{
     marginTop: 7,
     marginLeft: 125,
-   
-   
-  
-},
+   },
 
   tema:{
     
@@ -209,7 +186,6 @@ const styles = StyleSheet.create({
   regtext:{
     marginLeft: 20,
   },
-
   zablog:{
     color: '#3366BB'  
   },

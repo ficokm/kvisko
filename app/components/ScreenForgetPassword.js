@@ -1,20 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View,TextInput,TouchableHighlight,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View,TextInput,TouchableHighlight,KeyboardAvoidingView,Keyboard } from 'react-native';
 import {
   StackNavigator,
 } from 'react-navigation';
 
 
 export default class HomeScreen extends React.Component {
-    ZabLozinka1 = () =>{
-        var {navigate} = this.props.navigation;
-        navigate("First")
-       
-      }
+  
+  constructor(props) {
+    
+    super(props)
+ 
+    this.state = {
+ 
+     
+      UserEmail: ''
+ 
+    }
+ 
+  }
 
+  ProbaResetPW = () =>{
+    const { UserEmail }  = this.state;
+
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       if(re.test(UserEmail)) {
+
+
+         
+       }else{
+         alert('Унос мора бити у формату маила')
+       }
+   
+   
+  }
+    ZabLozinka1 = () =>{
+      Keyboard.dismiss();
+      this.props.navigation.navigate('First')
+      
+    }
     static navigationOptions =
     {
-       title: 'Заборављена лозинка?',
+      headerLeft: null,
+      header: null,
     }
   
     render() {
@@ -26,17 +54,21 @@ export default class HomeScreen extends React.Component {
             <TextInput
             // Adding hint in Text Input using Place holder.
               placeholder="E-mail "
-              onChangeText={UserPassword => this.setState({UserPassword})}
+              onChangeText={UserEmail => this.setState({UserEmail})}
             // Making the Under line Transparent.
               underlineColorAndroid='transparent'
               style={styles.TextInputStyleClass}
+              maxLength = {30}
               
           />
         <View style={styles.tema}>
           <TouchableHighlight
                 style={styles.submit}
                 
-                underlayColor='#fff'>
+                underlayColor='#fff'
+                onPress={this.ProbaResetPW}
+                >
+                
                 <Text style={styles.submitText}>Пошаљи</Text>
           </TouchableHighlight>
 
@@ -60,8 +92,7 @@ export default class HomeScreen extends React.Component {
 
 
 
-
-    const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
         
        MainContainer :{
         

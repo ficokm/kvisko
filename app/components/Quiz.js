@@ -15,6 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Animbutton from './Animbutton'
 import pitanja from './PitanjaProbaScreen'
+import Pitanja from './Pitanja'
 
 const { width, height } = Dimensions.get('window')
 let arrnew = []
@@ -123,11 +124,11 @@ export default class Quiz extends Component {
       correctoption : arrnew[this.qno].correctoption,
       countCheck : 0,
       Pitanje123 : '',
-     Opcija1 : '',
-     Opcija2 : '',
-     Opcija3 : '',
-     Opcija4 : '',
-     TacnaOpcija : '',
+      Opcija1 : '',
+      Opcija2 : '',
+      Opcija3 : '',
+      Opcija4 : '',
+      TacnaOpcija : '',
      
     }
 

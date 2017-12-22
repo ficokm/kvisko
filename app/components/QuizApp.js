@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView
-} from 'react-native';
+
+
 import Animbutton from './Animbutton'
 export default class QuizApp extends Component {
   render() {
